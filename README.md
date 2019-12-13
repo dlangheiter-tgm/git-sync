@@ -13,6 +13,7 @@ A GitHub Action for syncing between two independent repositories using **force p
 ## Usage
 
 ### GitHub Actions
+This is not accurate at the moment. 
 ```
 # File: .github/workflows/repo-sync.yml
 
@@ -23,14 +24,12 @@ jobs:
     steps:
     - name: repo-sync
       uses: wei/git-sync@v1
-      env:
+      with:
         SOURCE_REPO: ""
         SOURCE_BRANCH: ""
         DESTINATION_REPO: ""
         DESTINATION_BRANCH: ""
         SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-      with:
-        args: $SOURCE_REPO $SOURCE_BRANCH $DESTINATION_REPO $DESTINATION_BRANCH
 ```
 `SSH_PRIVATE_KEY` can be omitted if using authenticated HTTPS repo clone urls like `https://username:access_token@github.com/username/repository.git`.
 
@@ -38,15 +37,8 @@ jobs:
 
 To Sync all branches from source to destination, use `SOURCE_BRANCH: "refs/remotes/source/*"` and `DESTINATION_BRANCH: "refs/heads/*"`. But be careful, branches with the same name including `master` will be overwritten.
 
-### Docker
-```
-docker run --rm -e "SSH_PRIVATE_KEY=$(cat ~/.ssh/id_rsa)" $(docker build -q .) \
-  $SOURCE_REPO $SOURCE_BRANCH $DESTINATION_REPO $DESTINATION_BRANCH
-```
-
 ## Author
-[Wei He](https://github.com/wei) _github@weispot.com_
-
+[David Langheiter](https://github.com/dlangheiter-tgm) _david@langheiter.com_
 
 ## License
 [MIT](https://wei.mit-license.org)
