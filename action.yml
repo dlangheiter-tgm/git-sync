@@ -1,0 +1,26 @@
+name: 'Git Sync Action'
+description: '🔃 Sync between two independent repositories'
+author: 'David Langheiter <david@langheiter.com>'
+branding:
+  icon: 'git-branch'
+  color: 'blue'
+inputs:
+  source-repo:
+    description: 'Source Repository (defaults to $GITHUB_REPO)'
+    required: false
+  source-branch:
+    description: 'Source branch (defaults to $GITHUB_BRANCH)'
+    required: false
+  destination-repo:
+    description: 'Destination Repository'
+    required: true
+  destination-branch:
+    description: 'Destination Branch (defaults to $GITHUB_BRANCH)'
+    required: false
+  ssh_private_key:
+    description: 'Your ssh private key to access the destination repository'
+    required: false
+
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
