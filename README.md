@@ -7,31 +7,42 @@ A GitHub Action for syncing between two independent repositories using **force p
  * Sync branches between two GitHub repositories
  * Sync branches to/from a remote repository
  * GitHub action can be triggered on a timer or on push
- * To sync with current repository, please checkout [Github Repo Sync](https://github.com/marketplace/actions/github-repo-sync)
 
 
 ## Usage
 
 ### GitHub Actions
-This is not accurate at the moment. 
 ```
 # File: .github/workflows/repo-sync.yml
 
-on: push
+name: CI
+
+on: [push]
+
 jobs:
-  repo-sync:
+  build:
+
     runs-on: ubuntu-latest
+
     steps:
     - name: repo-sync
-      uses: wei/git-sync@v1
+      uses: dlangheiter-tgm/git-sync@master
       with:
-        SOURCE_REPO: ""
-        SOURCE_BRANCH: ""
-        DESTINATION_REPO: ""
-        DESTINATION_BRANCH: ""
-        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        destination_repo: 'dlangheiter-tgm/test'
+        ssh_private_key: ${{ secrets.PRIVATE_KEY }}
 ```
-`SSH_PRIVATE_KEY` can be omitted if using authenticated HTTPS repo clone urls like `https://username:access_token@github.com/username/repository.git`.
+`ssh_private_key` can be omitted if using authenticated HTTPS repo clone urls like `https://username:access_token@github.com/username/repository.git`.
+
+### Inputs
+
+| name               | value  | default      | description                                      |
+| ------------------ | ------ | ------------ | ------------------------------------------------ |
+| source_repo        | string | $GITHUB_REPO | Source repo to pull.                             |
+| source_branch      | string | $GITHUB_REF  | Source branch to pull.                           |
+| destination_repo   | string |              | Destination repo to push.                        |
+| destination_branch | string | $GITHUB_REF  | Destination branch to push.                      |
+| ssh_private_key    | string |              | SSH Private key for auth at the destination repo |
+
 
 #### Advanced: Sync all branches
 

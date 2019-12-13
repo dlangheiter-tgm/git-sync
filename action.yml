@@ -9,13 +9,13 @@ inputs:
     description: 'Source Repository (defaults to $GITHUB_REPO)'
     required: false
   source_branch:
-    description: 'Source branch (defaults to $GITHUB_BRANCH)'
+    description: 'Source branch (defaults to $GITHUB_REF)'
     required: false
   destination_repo:
     description: 'Destination Repository'
     required: true
   destination_branch:
-    description: 'Destination Branch (defaults to $GITHUB_BRANCH)'
+    description: 'Destination Branch (defaults to $GITHUB_REF)'
     required: false
   ssh_private_key:
     description: 'Your ssh private key to access the destination repository'
