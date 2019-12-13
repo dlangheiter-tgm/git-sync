@@ -5,16 +5,16 @@ branding:
   icon: 'git-branch'
   color: 'blue'
 inputs:
-  source-repo:
+  source_repo:
     description: 'Source Repository (defaults to $GITHUB_REPO)'
     required: false
-  source-branch:
+  source_branch:
     description: 'Source branch (defaults to $GITHUB_BRANCH)'
     required: false
-  destination-repo:
+  destination_repo:
     description: 'Destination Repository'
     required: true
-  destination-branch:
+  destination_branch:
     description: 'Destination Branch (defaults to $GITHUB_BRANCH)'
     required: false
   ssh_private_key:
